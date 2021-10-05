@@ -8,6 +8,7 @@ public class SokobanGameManager : MonoBehaviour
     GameObject casillero, casilleroTarget, pared, jugador, bloque;
     List<Vector2> posOcupadasEsperadasCasillerosTarget;
     Stack pilaTablerosAnteriores;
+    
 
     string orientacionJugador;
     string nombreNivelActual = "Nivel1";
@@ -87,12 +88,12 @@ public class SokobanGameManager : MonoBehaviour
             }
             else
             {
-                if (objProximo != null && objProximo.CompareTag("bloque") && objProximoProximo != null)
+                if (objProximo != null && objProximo.CompareTag("bloque") && objProximoProximo != null && objProximoProximo.CompareTag("casillero"))
                 {
                     nivel.Tablero.setearObjeto(jugador, posicionJugador, orientacionJugador, 1);
                     {
                         nivel.Tablero.setearObjeto(casillero, posicionJugador);
-                        nivel.Tablero.setearObjeto(bloque, posicionJugador, orientacionJugador, 2); ;
+                        nivel.Tablero.setearObjeto(bloque, posicionJugador, orientacionJugador, 2);
                     }
                 }
             }
@@ -100,6 +101,7 @@ public class SokobanGameManager : MonoBehaviour
 
             if (ChequearVictoria(nivel.Tablero))
             {
+                posOcupadasEsperadasCasillerosTarget = null;
                 Debug.Log("Gané");
             }
         }
