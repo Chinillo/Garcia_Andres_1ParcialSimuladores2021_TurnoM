@@ -7,6 +7,7 @@ public class SokobanGameManager : MonoBehaviour
     Nivel nivel, nivelAux;
     GameObject casillero, casilleroTarget, pared, jugador, bloque;
     List<Vector2> posOcupadasEsperadasCasillerosTarget;
+    List<Vector2> posOcupadasEsperadasBloques;
     Stack pilaTablerosAnteriores;
     
 
@@ -29,6 +30,7 @@ public class SokobanGameManager : MonoBehaviour
     {
         nivel = SokobanLevelManager.instancia.dameNivel(nombre);
         posOcupadasEsperadasCasillerosTarget = nivel.Tablero.damePosicionesObjetos("CasilleroTarget");
+        posOcupadasEsperadasBloques = nivel.Tablero.damePosicionesObjetos("Bloque");
         InstanciadorPrefabs.instancia.graficarCasilleros(nivel.Tablero, casillero);
         InstanciadorPrefabs.instancia.graficarCasillerosTarget(nivel.Tablero, casilleroTarget);
         InstanciadorPrefabs.instancia.graficarObjetosTablero(nivel.Tablero, SokobanLevelManager.instancia.dameLstPrefabsSokoban());
@@ -74,7 +76,8 @@ public class SokobanGameManager : MonoBehaviour
             tablAux.setearObjetos(pared, nivel.Tablero.damePosicionesObjetos("Pared"));
             tablAux.setearObjetos(jugador, nivel.Tablero.damePosicionesObjetos("Jugador"));
 
-            //TIP: pilaTablerosAnteriores.Push(tablAux);
+            //pilaTablerosAnteriores.Push(tablAux);
+            //pilaTablerosAnteriores.Pop();
 
             Vector2 posicionJugador = new Vector2(nivel.Tablero.damePosicionObjeto("Jugador").x, nivel.Tablero.damePosicionObjeto("Jugador").y);
             GameObject objProximo, objProximoProximo;
@@ -101,7 +104,7 @@ public class SokobanGameManager : MonoBehaviour
 
             if (ChequearVictoria(nivel.Tablero))
             {
-                posOcupadasEsperadasCasillerosTarget = null;
+                Time.timeScale = 0;
                 Debug.Log("Gané");
             }
         }
@@ -118,6 +121,10 @@ public class SokobanGameManager : MonoBehaviour
 
     private bool ChequearVictoria(Tablero tablero)
     {
+        ////for (SonIgualesLosVectores )
+        //{
+
+        //}
         return false;
     }
 }
